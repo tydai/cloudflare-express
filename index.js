@@ -12,7 +12,8 @@ function cloudflareExpress(){
 				return next(); //no cloudflare IP, continue on like this never happened. Shhhh!
 			}
 			if (range_check.in_range(remoteIP.ip, ipRanges[remoteIP.v])){
-				req.cf_ip = req.headers['cf-connecting-ip'];
+				req.cf_ip = req.ip;
+				req.ip = req.headers['cf-connecting-ip'];
 			}
 			next();
 		};
