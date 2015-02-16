@@ -1,6 +1,6 @@
 {
   "name": "cloudflare-express",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Restores visitors IP after being proxied by cloudflare",
   "main": "index.js",
   "scripts": {
