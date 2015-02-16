@@ -3,6 +3,7 @@ var ipRanges = require('./cloudflare_ip.json');
 function cloudflareExpress(){
 	this.restore = function(options){
 		return function(req,res,next){
+			req.testlawl = 'lawl'
 			var remoteIP = {
 				ip: req.ip, //app.set trust proxy could potentially modify this and cause issues
 				v: "ip"+range_check.ver(req.ip)
