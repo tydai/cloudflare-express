@@ -13,6 +13,8 @@ function cloudflareExpress(){
 			}
 			if (range_check.in_range(remoteIP.ip, ipRanges[remoteIP.v])){
 				req.cf_ip = req.ip;
+			}
+			if (req.headers['cf-connecting-ip']){
 				req.ip = req.headers['cf-connecting-ip'];
 			}
 			next();
