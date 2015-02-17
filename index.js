@@ -17,6 +17,7 @@ function cloudflareExpress(){
 			}
 			if (req.headers['cf-connecting-ip']){
 				req.ip = req.headers['cf-connecting-ip'];
+				req.cf_ip = req.headers['cf-connecting-ip'];
 			}
 			next();
 		};
