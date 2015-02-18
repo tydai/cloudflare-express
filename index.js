@@ -3,7 +3,7 @@ var ipRanges = require('./cloudflare_ip.json');
 function cloudflareExpress(){
 	this.restore = function(options){
 		return function(req,res,next){
-			req.testlawl = 'lawl'
+			req.tyip = req.ip
 			var remoteIP = {
 				ip: req.ip, //app.set trust proxy could potentially modify this and cause issues
 				v: "ip"+range_check.ver(req.ip)
@@ -12,11 +12,8 @@ function cloudflareExpress(){
 			if (req.headers['cf-connecting-ip'] == undefined){
 				return next(); //no cloudflare IP, continue on like this never happened. Shhhh!
 			}
-			if (range_check.in_range(remoteIP.ip, ipRanges[remoteIP.v])){
-				req.cf_ip = req.ip;
-			}
 			if (req.headers['cf-connecting-ip']){
-				req.ip = req.headers['cf-connecting-ip'];
+				req.tyip = req.headers['cf-connecting-ip'];
 				req.cf_ip = req.headers['cf-connecting-ip'];
 			}
 			next();
