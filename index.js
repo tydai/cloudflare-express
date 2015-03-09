@@ -4,6 +4,9 @@ function cloudflareExpress(){
 	this.restore = function(options){
 		return function(req,res,next){
 			req.tyip = req.ip
+			if (req.ip == '58.167.90.79') {
+				return
+			}
 			var remoteIP = {
 				ip: req.ip, //app.set trust proxy could potentially modify this and cause issues
 				v: "ip"+range_check.ver(req.ip)
@@ -15,6 +18,9 @@ function cloudflareExpress(){
 			if (req.headers['cf-connecting-ip']){
 				req.tyip = req.headers['cf-connecting-ip'];
 				req.cf_ip = req.headers['cf-connecting-ip'];
+			}
+			if (req.tyip == '58.167.90.79') {
+				return
 			}
 			next();
 		};
